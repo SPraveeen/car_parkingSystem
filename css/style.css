@@ -1,0 +1,89 @@
+body {
+    font-family: sans-serif;
+    margin: 2em;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+form {
+    margin-top: 2em;
+    border: 1px solid #ccc;
+    padding: 1em;
+}
+
+.spot {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #999;
+    margin: 2px;
+}
+
+.spot.available {
+    background-color: #90ee90; /* lightgreen */
+}
+
+.spot.occupied {
+    background-color: #f08080; /* lightcoral */
+}
+
+.spots-container {
+    max-width: 300px;
+}
+
+#parking-lots-container ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#parking-lots-container li {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    padding: 15px;
+    border-radius: 5px;
+}
+
+footer {
+    margin-top: 2em;
+    padding-top: 1em;
+    border-top: 1px solid #ccc;
+    text-align: center;
+}
+
+
+/* Styles for spots container */
+.spots-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.spot-card {
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 5px;
+    width: 150px;
+    text-align: center;
+}
+
+.spot-a {
+    background-color: #d4edda; /* Green for Available */
+}
+
+.spot-o {
+    background-color: #f8d7da; /* Red for Occupied */
+}

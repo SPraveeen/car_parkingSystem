@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Parking Lot - {{ lot.name }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>{{ lot.name }}</h1>
+    <p>Price: ${{ '%.2f'|format(lot.price) }} per hour</p>
+
+    <h2>Parking Spots</h2>
+    <div class="spots-container">
+        {% for spot in lot.spots|sort(attribute='spot_number') %}
+            <div class="spot-card spot-{{ spot.status.lower() }}">
+                <p>Spot {{ spot.spot_number }}</p>
+                {% if spot.status == 'A' %}
+                    <p>Status: Available</p>
+                    <form action="{{ url_for('user.book_spot', spot_id=spot.id) }}" method="post">
+                        <button type="submit">Book Now</button>
+                    </form>
+                {% else %}
+                    <p>Status: Occupied</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <p><a href="{{ url_for('index') }}">Back to Home</a></p>
+</body>
+</html>

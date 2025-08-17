@@ -10,6 +10,37 @@
     <h1>Welcome to the Vehicle Parking Lot</h1>
     <p>Book your spot now!</p>
 
+    <h2>Available Parking Lots</h2>
+    <div id="parking-lots-container">
+        {% if parking_lots %}
+            <ul>
+                {% for lot in parking_lots %}
+                    <li>
+                        <strong>{{ lot.name }}</strong> - Price: ${{ '%.2f'|format(lot.price) }}
+                        (Available: {{ lot.spots|selectattr('status', 'equalto', 'A')|list|length }}/{{lot.capacity}})
+                        <a href="{{ url_for('user.view_lot', lot_id=lot.id) }}">View Spots</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No parking lots have been set up yet.</p>
+        {% endif %}
+    </div>
+
+    <footer>
+                {% if current_user.is_authenticated %}
+            <span>Welcome, {{ current_user.username }}!</span>
+            <a href="{{ url_for('user.dashboard') }}">My Dashboard</a>
+            <a href="{{ url_for('auth.logout') }}">Logout</a>
+            {% if current_user.is_admin %}
+                <a href="{{ url_for('admin.dashboard') }}">Admin Panel</a>
+            {% endif %}
+        {% else %}
+            <a href="{{ url_for('auth.login') }}">Login</a>
+            <a href="{{ url_for('auth.register') }}">Register</a>
+        {% endif %}
+    </footer>
+
     <script src="js/script.js"></script>
 </body>
 </html>
